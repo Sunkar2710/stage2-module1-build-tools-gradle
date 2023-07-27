@@ -1,4 +1,53 @@
 //add everything here
+plugins {
+    // id for library
+    // id for maven to publish jar to local repository
+    id 'java-library'
+    id 'maven-publish'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
+
+java {
+// provide sourceCompatibility
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
+}
+
+repositories {
+// provide repository, where required dependencies are located
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+// provide groupId
+// provide artifactId
+// provide version
+            group = 'com.epam'
+            artifactId = 'demo-library'
+            version = '1.0'
+
+            from components.java
+        }
+    }
+}
+
+jar {
+    manifest {
+        //provide manifest with such attributes as 'Implementation-Title', 'Implementation-Version'
+        attributes("Implementation-Title": "Gradle",
+                "Implementation-Version": archiveVersion)
+    }
+}
 
 test {
     useJUnitPlatform()
