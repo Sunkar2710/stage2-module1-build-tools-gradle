@@ -6,12 +6,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringUtilsTest {
     @Test
-    void  testPositiveNumber() {
-        assertEquals(true , StringUtils.isPositiveNumber("5"));
+    void testNullArgument() {
+        assertEquals(false, StringUtils.isPositiveNumber(null));
+    }
+    @Test
+    void testEmptyArgument() {
+        assertEquals(false, StringUtils.isPositiveNumber(""));
+    }
+    @Test
+    void  testPositiveArgument() {
+        assertEquals(true , StringUtils.isPositiveNumber("1.1"));
     }
 
     @Test
-    void testNegativeNumber() {
-        assertEquals(false, StringUtils.isPositiveNumber("-1"));
+    void testNegativeArgument() {
+        assertEquals(false, StringUtils.isPositiveNumber("-1.1"));
     }
 }
