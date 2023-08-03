@@ -9,12 +9,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class UtilsTest {
     @Test
     void testNullArgument() {
-        assertEquals(false, Utils.isAllPositiveNumbers(List.of()));
+        assertEquals(false, Utils.isAllPositiveNumbers(List.of(null)));
     }
 
     @Test
     void testEmptyArgument() {
         assertEquals(false, Utils.isAllPositiveNumbers(List.of()));
+    }
+    @Test
+    void testEmptyStringArgument() {
+        assertEquals(false, Utils.isAllPositiveNumbers(List.of("")));
+    }
+    @Test
+    void testZeroArgument() {
+        assertEquals(false, Utils.isAllPositiveNumbers(List.of("11", "0")));
     }
     @Test
     void testAllPositiveArguments() {

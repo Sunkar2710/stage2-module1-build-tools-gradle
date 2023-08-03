@@ -9,9 +9,14 @@ public class Utils {
             return false;
         }
 
-        for (String arg : args) {
-            if (Float.parseFloat(arg) < 0) return false;
+        try {
+            for (String arg : args) {
+                if (Float.parseFloat(arg) <= 0) return false;
+            }
+        } catch (NumberFormatException e) {
+            return false;
         }
+
         return true;
     }
 }

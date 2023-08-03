@@ -14,6 +14,8 @@ public class StringUtilsTest {
         assertEquals(false, StringUtils.isPositiveNumber(""));
     }
     @Test
+    void testZeroArgument() { assertEquals(false, StringUtils.isPositiveNumber("0"));}
+    @Test
     void  testPositiveArgument() {
         assertEquals(true , StringUtils.isPositiveNumber("1.1"));
     }
