@@ -1,14 +1,20 @@
 plugins {
     // id for library
     // id for maven to publish jar to local repository
+    id 'java'
+    id 'maven-publish'
 }
 
 java {
 // provide sourceCompatibility
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(11)
+    }
 }
 
 repositories {
 // provide repository, where required dependencies are located
+    mavenCentral()
 }
 
 publishing {
@@ -17,6 +23,9 @@ publishing {
 // provide groupId
 // provide artifactId
 // provide version
+            groupId 'com.epam.utils'
+            artifactId 'utils'
+            version '1.1'
 
             from components.java
         }
@@ -24,10 +33,18 @@ publishing {
 }
 
 //add Apache Apache Commons Lang 3.10 (or higher) dependency
+dependencies {
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.2')
+
+    testRuntimeOnly('org.junit.platform:junit-platform-launcher')
+
+    implementation('org.apache.commons:commons-lang3:3.10')
+}
 
 jar {
     manifest {
         //provide manifest with such attributes as 'Implementation-Title', 'Implementation-Version'
+        attributes("Implementation-Title" : "Gradle", "Implementation-Version" : archiveVersion)
     }
 }
 
