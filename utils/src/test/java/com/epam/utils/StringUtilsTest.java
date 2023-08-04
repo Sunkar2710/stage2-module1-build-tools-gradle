@@ -2,26 +2,30 @@ package com.epam.utils;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StringUtilsTest {
     @Test
     void testNullArgument() {
-        assertEquals(false, StringUtils.isPositiveNumber(null));
+        assertFalse(StringUtils.isPositiveNumber(null));
     }
     @Test
     void testEmptyArgument() {
-        assertEquals(false, StringUtils.isPositiveNumber(""));
+        assertFalse(StringUtils.isPositiveNumber(""));
     }
     @Test
-    void testZeroArgument() { assertEquals(false, StringUtils.isPositiveNumber("0"));}
+    void testZeroArgument() {
+        assertFalse(StringUtils.isPositiveNumber("0"));}
     @Test
     void  testPositiveArgument() {
-        assertEquals(true , StringUtils.isPositiveNumber("1.1"));
+        assertTrue(StringUtils.isPositiveNumber("1.1"));
     }
-
+    @Test
+    void testZeroBeforeArgument() {
+        assertFalse(StringUtils.isPositiveNumber("088"));
+    }
     @Test
     void testNegativeArgument() {
-        assertEquals(false, StringUtils.isPositiveNumber("-1.1"));
+        assertFalse(StringUtils.isPositiveNumber("-1.1"));
     }
 }
